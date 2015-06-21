@@ -1,0 +1,14 @@
+{
+	"env": {
+		"default": {
+			"port": 5000,
+			"db": {
+				"db": "utilities_manager",
+				"host": "127.0.0.1",
+				"debug": false
+			},
+			"secret": "secret",
+			"key": "express.sid"
+		}
+	}
+}
