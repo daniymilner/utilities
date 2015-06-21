@@ -1,3 +1,1 @@
-/**
- * Created by Lesha on 04.04.2015.
- */
+exports.user = require('./user');

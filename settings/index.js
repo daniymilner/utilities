@@ -1,5 +1,6 @@
 var express = require('express'),
 	path = require('path'),
+	logger = require('morgan'),
 	cookieParser = require('cookie-parser'),
 	bodyParser = require('body-parser'),
 	modules = require('../modules'),
@@ -31,6 +32,7 @@ module.exports = function(app){
 	app.use(modules.stylus(path.join(__dirname, '../public')));
 	app.use(express.static(path.join(__dirname, '../public')));
 	app.use(cors());
+	app.use(logger('dev'));
 	app.use(passport.initialize());
 	app.use(passport.session());
 
@@ -42,6 +44,9 @@ module.exports = function(app){
 	require('./db');
 
 	app.use('/', require('../routes'));
+
+	require('./passport')();
+
 
 	/*Error handling*/
 	app.use(function(err, req, res, next){
