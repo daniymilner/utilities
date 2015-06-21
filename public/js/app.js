@@ -6,16 +6,15 @@ angular
 		'ui.bootstrap'
 	])
 	.config([
-		'$httpProvider',
 		'$stateProvider',
 		'$urlRouterProvider',
-		function($httpProvider, $stateProvider, $urlRouterProvider){
+		function($stateProvider, $urlRouterProvider){
 			$stateProvider
 				.state('home', {
 					url: '/',
 					views: {
 						main: {
-							templateUrl: "views/common/test-view"
+							templateUrl: "views/test-view"
 						}
 					}
 				})
@@ -23,7 +22,7 @@ angular
 					url: '/aaa',
 					views: {
 						main: {
-							templateUrl: "views/common/test-view"
+							templateUrl: "views/test-view"
 						}
 					}
 				});

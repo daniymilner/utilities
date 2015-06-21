@@ -1,0 +1,17 @@
+nav.navbar.navbar-inverse.navbar-fixed-top
+	.container
+		.navbar-header
+			button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+				span.sr-only Toggle navigation
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			a.navbar-brand(ui-sref='home') Utilities
+		#navbar.collapse.navbar-collapse
+			ul.nav.navbar-nav
+				li(ui-sref-active='active')
+					a(ui-sref='home') Home
+				li(ui-sref-active='active')
+					a(ui-sref='aaa') About
+				li
+					a(href='#contact') Contact

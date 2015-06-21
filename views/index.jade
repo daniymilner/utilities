@@ -8,10 +8,19 @@ html(ng-app='utilities')
 		meta(name='format-detection', content='telephone=no')
 		title Utilities
 		link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.min.css')
-		link(rel='stylesheet', href='css/import.css')
+		link(rel='stylesheet', href='css/custom-bootstrap.css')
+		link(rel='stylesheet', href='css/app.css')
 
 	body
-		div(ui-view='main')
+		include common/menu
+		.container-fluid
+			.row
+				.col-sm-3.col-md-2.sidebar
+					include common/submenu
+				.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+					div(ui-view='main')
+		script(src='bower_components/jquery/dist/jquery.min.js')
+		script(src='bower_components/bootstrap/dist/js/bootstrap.min.js')
 		script(src='bower_components/angular/angular.min.js')
 		script(src='bower_components/angular-ui-router/release/angular-ui-router.min.js')
 		script(src='bower_components/angular-bootstrap/ui-bootstrap.min.js')
