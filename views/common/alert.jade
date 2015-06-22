@@ -1,0 +1,2 @@
+.alert-wrapper(ng-controller='alertCtrl as ctrl')
+	alert(type='{{ctrl.alert.type}}', ng-bind='ctrl.alert.message', ng-if='ctrl.showAlert')
