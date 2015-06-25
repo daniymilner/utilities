@@ -18,7 +18,7 @@ html(ng-app='utilities')
 			.container-fluid
 				.row
 					.col-sm-3.col-md-2.sidebar
-						include common/submenu
+						div(ui-view='submenu')
 					.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
 						div(ui-view='main')
 		include common/alert
@@ -37,7 +37,9 @@ html(ng-app='utilities')
 		script(src='js/factories/user/auth-user.factory.js')
 		script(src='js/factories/user/current-user.factory.js')
 		script(src='js/factories/user/user.factory.js')
+		script(src='js/factories/instance/instance.factory.js')
 		script(src='js/directives/app-show.directive.js')
 		script(src='js/controllers/alert.ctrl.js')
 		script(src='js/controllers/login.ctrl.js')
 		script(src='js/controllers/menu.ctrl.js')
+		script(src='js/controllers/instance/list.ctrl.js')

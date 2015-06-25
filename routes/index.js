@@ -19,6 +19,9 @@ router
 	.post('/user/logout', userFilter, function(req, res){
 		req.logout();
 		res.status(200).end();
-	});
+	})
+
+	.get('/instance/list', userFilter, controllers.instance.list)
+	.post('/instance/:id/toggle', userFilter, controllers.instance.toggle);
 
 module.exports = router;
