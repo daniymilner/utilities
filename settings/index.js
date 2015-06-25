@@ -47,10 +47,9 @@ module.exports = function(app){
 
 	require('./passport')();
 
-
 	/*Error handling*/
 	app.use(function(err, req, res, next){
-		console.log(err.status);
+		console.log(err);
 		res
 			.status(err.status || 500)
 			.json({

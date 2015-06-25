@@ -23,10 +23,10 @@ angular
 						if(prevUrl){
 							window.location.hash = appHistory.getPrevUrl();
 						}else{
-							$state.go('gallery');
+							$state.go('home');
 						}
 					}, function(){
-						appAlert.error({message: 'Login failed'});
+						appAlert.error({message: 'Authorization failed'});
 					});
 			};
 		}

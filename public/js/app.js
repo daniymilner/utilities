@@ -7,21 +7,24 @@ angular
 		'ngCookies'
 	])
 	.constant('userSetting', {
-		token: '__usr_t'
+		token: '__usr_tt'
 	})
 	.config([
 		'$httpProvider',
 		'$stateProvider',
 		'$urlRouterProvider',
-		function($httpProvider, $stateProvider, $urlRouterProvider){
+		'$compileProvider',
+		function($httpProvider, $stateProvider, $urlRouterProvider, $compileProvider){
+			$httpProvider.interceptors.push('authUserFactory');
+			$compileProvider.debugInfoEnabled(false);
+			$httpProvider.useApplyAsync(true);
+
 			var userResolver = [
 				'currentUserFactory',
 				function(currentUser){
 					return currentUser.load();
 				}
 			];
-
-			$httpProvider.interceptors.push('authUserFactory');
 
 			$stateProvider
 				.state('home', {

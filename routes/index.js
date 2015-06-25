@@ -14,6 +14,11 @@ router
 		res.render(path);
 	})
 	.get('/user/:userId', userFilter, controllers.user.get)
-	.post('/user', userFilter, controllers.user.login);
+	.post('/user', controllers.user.login)
+	.post('/user/login', loginFilter, controllers.user.login)
+	.post('/user/logout', userFilter, function(req, res){
+		req.logout();
+		res.status(200).end();
+	});
 
 module.exports = router;

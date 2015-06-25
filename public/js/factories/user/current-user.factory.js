@@ -9,7 +9,7 @@ angular
 		'userFactory',
 		'appUtilsFactory',
 		'userSetting',
-		function($q, $state, $cookies, User, appUtilsFactory, userSetting){
+		function($q, $state, $cookies, User, appUtils, userSetting){
 			var that = this,
 				onError = function(){
 					delete that.user;
@@ -35,7 +35,7 @@ angular
 
 			this.login = function(user){
 				var deferred = $q.defer();
-				appUtilsFactory
+				appUtils
 					.request({
 						method: 'post',
 						url: '/user/login',
@@ -54,7 +54,7 @@ angular
 
 			this.logout = function(){
 				var deferred = $q.defer();
-				appUtilsFactory
+				appUtils
 					.request({
 						method: 'post',
 						url: '/user/logout'
