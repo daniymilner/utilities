@@ -5,7 +5,8 @@ angular
 	.factory('appAlertFactory', [
 		'$rootScope',
 		function($rootScope){
-			var hideDelay = 3000,
+			var that = this,
+				hideDelay = 5000,
 				type = 'success';
 
 			this.showSimple = function(params){
@@ -18,7 +19,7 @@ angular
 
 			this.error = function(params){
 				params.type = 'danger';
-				this.showSimple(params);
+				that.showSimple(params);
 			};
 
 			return this;

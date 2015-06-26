@@ -17,6 +17,12 @@ angular
 					url: '/instance/' + id + '/toggle'
 				});
 			};
+			this.get = function(id){
+				return appUtils.request({
+					method: 'get',
+					url: '/instance/' + id
+				});
+			};
 
 			return this;
 		}

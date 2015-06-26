@@ -1,2 +1,4 @@
-h1.page-header Instances
-h2.sub-header Edit
+div(ng-controller='instanceEditCtrl as instanceEdit')
+	h1.page-header Instances
+	h2.sub-header(ng-if='instanceEdit.isCreate') Create
+	h2.sub-header(ng-if='!instanceEdit.isCreate') Edit

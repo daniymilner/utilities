@@ -1,9 +1,11 @@
 var Instance = require('../../services').Instance;
 
 module.exports = function(req, res, next){
+	var id = req.params.id;
+
 	Instance
-		.list()
-		.then(function(list){
-			res.json(list);
+		.get(id)
+		.then(function(item){
+			res.json(item);
 		}, next);
 };

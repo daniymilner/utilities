@@ -22,6 +22,7 @@ router
 	})
 
 	.get('/instance/list', userFilter, controllers.instance.list)
+	.get('/instance/:id', userFilter, controllers.instance.get)
 	.post('/instance/:id/toggle', userFilter, controllers.instance.toggle);
 
 module.exports = router;

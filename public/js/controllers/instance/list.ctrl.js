@@ -38,7 +38,7 @@ angular
 			};
 
 			this.create = function(){
-
+				$state.go('instanceEdit');
 			};
 		}
 	]);

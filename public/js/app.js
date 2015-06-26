@@ -52,7 +52,7 @@ angular
 					}
 				})
 				.state('instanceEdit', {
-					url: '/instance-edit/:id',
+					url: '/instance/:id',
 					resolve: {user: userResolver},
 					views: {
 						main: {
