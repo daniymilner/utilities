@@ -7,24 +7,23 @@ div(ng-controller='instanceListCtrl as instanceList')
 		table.table.table-striped(ng-if='instanceList.list.length')
 			thead
 				tr
-					th #
+					th.text-center Status
 					th Name
 					th Count
-					th.text-center Status
 					th
 			tbody
 				tr(ng-repeat='instance in instanceList.list')
-					td {{$index + 1}}
-					td(ng-bind='instance.name')
-					td(ng-bind='instance.count')
 					td
 						p.text-center(ng-if='instance.active')
 							span.glyphicon.glyphicon-ok(aria-hidden='true')
 						p.text-center(ng-if='!instance.active')
 							span.glyphicon.glyphicon-remove(aria-hidden='true')
+					td(ng-bind='instance.name')
+					td(ng-bind='instance.count')
 					td
 						.btn-group
-							button.btn.btn-primary.btn-sm(ng-click='instanceList.edit(instance)') Edit
-							button.btn.btn-danger.btn-sm(ng-if='instance.active', ng-click='instanceList.toggle(instance)') Disable
-							button.btn.btn-success.btn-sm(ng-if='!instance.active', ng-click='instanceList.toggle(instance)') Enable
+							button.btn.btn-default.btn-sm(ng-click='instanceList.edit(instance)') Edit
+							button.btn.btn-success.btn-sm(ng-if='instance.active', ng-click='instanceList.toggle(instance)') Disable
+							button.btn.btn-primary.btn-sm(ng-if='!instance.active', ng-click='instanceList.toggle(instance)') Enable
+							button.btn.btn-danger.btn-sm(ng-click='instanceList.remove(instance)') Remove
 		p(ng-if='!instanceList.list.length') No item in list

@@ -10,12 +10,28 @@ angular
 		function($state, $stateParams, Instance, appAlert){
 			var that = this;
 
+			this.item = {
+				name: '',
+				count: 0,
+				active: false
+			};
+
 			this.getItem = function(){
 				Instance
 					.get($stateParams.id)
 					.then(function(res){
 						that.item = res;
 					}, appAlert.error)
+			};
+
+			this.submit = function(){
+				Instance
+					.submit(that.item)
+					.then(function(res){
+						that.item = res;
+						$state.go('instanceList');
+						appAlert.showSimple({message: 'Instance successfully saved'})
+					}, appAlert.error);
 			};
 
 			if ($stateParams.id){

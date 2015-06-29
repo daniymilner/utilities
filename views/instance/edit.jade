@@ -2,3 +2,15 @@ div(ng-controller='instanceEditCtrl as instanceEdit')
 	h1.page-header Instances
 	h2.sub-header(ng-if='instanceEdit.isCreate') Create
 	h2.sub-header(ng-if='!instanceEdit.isCreate') Edit
+	form(ng-submit='instanceEdit.submit()')
+		.form-group
+			label(for='name') Name:
+			input#name.form-control(type='text', ng-model='instanceEdit.item.name', required)
+		.form-group
+			label(for='count') Count:
+			input#count.form-control(type='number', min='0', ng-model='instanceEdit.item.count', required)
+		.checkbox
+			label
+				input(type='checkbox', ng-model='instanceEdit.item.active')
+				| Active
+		button.btn.btn-default(type='submit') Submit

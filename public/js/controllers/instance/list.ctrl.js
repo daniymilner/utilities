@@ -12,17 +12,7 @@ angular
 			Instance
 				.list()
 				.then(function(res){
-					//that.list = res;
-					that.list = [{
-						id: '123',
-						name: 'aaa',
-						count: 122
-					},{
-						id: '312',
-						name: 'aaa',
-						count: 122,
-						active: true
-					}];
+					that.list = res;
 				}, appAlert.error);
 
 			this.edit = function(instance){
@@ -35,6 +25,17 @@ angular
 					.then(function(res){
 						instance.status = res.status;
 					}, appAlert.error)
+			};
+
+			this.remove = function(instance){
+				Instance
+					.remove(instance.id)
+					.then(function(){
+						that.list = that.list.filter(function(item){
+							return item.id !== instance.id;
+						});
+						appAlert.showSimple({message: 'Instance successfully removed'})
+					}, appAlert.error);
 			};
 
 			this.create = function(){

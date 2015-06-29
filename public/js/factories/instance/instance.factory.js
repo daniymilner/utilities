@@ -23,6 +23,21 @@ angular
 					url: '/instance/' + id
 				});
 			};
+			this.submit = function(item){
+				return appUtils.request({
+					method: 'put',
+					url: '/instance',
+					data: {
+						item: item
+					}
+				});
+			};
+			this.remove = function(id){
+				return appUtils.request({
+					method: 'delete',
+					url: '/instance/' + id
+				});
+			};
 
 			return this;
 		}
