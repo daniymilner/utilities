@@ -1,9 +1,12 @@
+//todo
 var Instance = require('../../services').Instance;
 
 module.exports = function(req, res, next){
+	var id = req.params.id;
+
 	Instance
-		.remove(req.params.id)
-		.then(function(){
-			res.send(200);
+		.get(id)
+		.then(function(item){
+			res.json(item);
 		}, next);
 };

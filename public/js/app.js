@@ -66,6 +66,30 @@ angular
 				.state('login', {
 					url: '/login',
 					templateUrl: "views/common/login"
+				})
+				.state('tarifsList', {
+					url: '/tarif-list',
+					resolve: {user: userResolver},
+					views: {
+						main: {
+							templateUrl: "views/tarifs/list"
+						},
+						submenu:{
+							templateUrl: "views/common/submenu"
+						}
+					}
+				})
+				.state('tarifsEdit', {
+					url: '/tarif/:id',
+					resolve: {user: userResolver},
+					views: {
+						main: {
+							templateUrl: "views/tarifs/edit"
+						},
+						submenu:{
+							templateUrl: "views/common/submenu"
+						}
+					}
 				});
 			$urlRouterProvider.otherwise('/');
 		}

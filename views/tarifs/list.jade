@@ -1,0 +1,25 @@
+div(ng-controller='tarifsListCtrl as tarifsList')
+	h1.page-header Tarifs
+	h2.sub-header List
+	.clearfix
+		button.btn.btn-primary.pull-right(ng-click='tarifsList.create()') Create
+	.table-responsive
+		table.table.table-striped(ng-if='tarifsList.list.length')
+			thead
+				tr
+					th Type
+					th Period
+					th Cost
+					th Instance
+					th
+			tbody
+				tr(ng-repeat='tariff in tarifsList.list')
+					td(ng-bind='tariff.type')
+					td(ng-bind='tariff.period')
+					td(ng-bind='tariff.cost')
+					td(ng-bind='tariff.instance')
+					td
+						.btn-group
+							button.btn.btn-default.btn-sm(ng-click='tarifsList.edit(tariff)') Edit
+							button.btn.btn-danger.btn-sm(ng-click='tarifsList.remove(tariff)') Remove
+		p(ng-if='!tarifsList.list.length') No item in list

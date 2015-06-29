@@ -25,6 +25,11 @@ router
 	.get('/instance/:id', userFilter, controllers.instance.get)
 	.post('/instance/:id/toggle', userFilter, controllers.instance.toggle)
 	.put('/instance', userFilter, controllers.instance.submit)
-	.delete('/instance/:id', userFilter, controllers.instance.remove);
+	.delete('/instance/:id', userFilter, controllers.instance.remove)
+
+	.get('/tarifs/list', userFilter, controllers.tarifs.list)
+	.get('/tarifs/:id', userFilter, controllers.tarifs.get)
+	.put('/tarifs', userFilter, controllers.tarifs.submit)
+	.delete('/tarifs/:id', userFilter, controllers.tarifs.remove);
 
 module.exports = router;

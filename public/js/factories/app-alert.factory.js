@@ -18,8 +18,10 @@ angular
 			};
 
 			this.error = function(params){
-				params.type = 'danger';
-				that.showSimple(params);
+				that.showSimple({
+					message: typeof params === 'string' ? params : params.message,
+					type: 'danger'
+				});
 			};
 
 			return this;

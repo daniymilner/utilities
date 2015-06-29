@@ -1,0 +1,16 @@
+div(ng-controller='tarifsEditCtrl as tarifsEdit')
+	h1.page-header Tarifs
+	h2.sub-header(ng-if='tarifsEdit.isCreate') Create
+	h2.sub-header(ng-if='!tarifsEdit.isCreate') Edit
+	form(ng-submit='tarifsEdit.submit()')
+		.form-group
+			label(for='name') Name:
+			input#name.form-control(type='text', ng-model='tarifsEdit.item.name', required)
+		.form-group
+			label(for='count') Count:
+			input#count.form-control(type='number', min='0', ng-model='tarifsEdit.item.count')
+		.checkbox
+			label
+				input(type='checkbox', ng-model='tarifsEdit.item.active')
+				| Active
+		button.btn.btn-default(type='submit') Submit

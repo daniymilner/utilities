@@ -1,3 +1,4 @@
+//todo
 var Instance = require('mongoose').model('Instance'),
 	Q = require('q');
 
@@ -5,16 +6,9 @@ module.exports = function(id){
 	var deferred = Q.defer();
 	Instance
 		.findById(id)
-		.exec(function(err, instance){
+		.exec(function(err, item){
 			if (!err){
-				instance.active = !instance.active;
-				instance.save(function(err, instance){
-					if (!err){
-						deferred.resolve(instance);
-					}else{
-						deferred.reject(err);
-					}
-				})
+				deferred.resolve(item);
 			}else{
 				deferred.reject(err);
 			}

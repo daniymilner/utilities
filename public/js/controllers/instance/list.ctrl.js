@@ -23,7 +23,10 @@ angular
 				Instance
 					.toggle(instance.id)
 					.then(function(res){
-						instance.status = res.status;
+						var item = that.list.filter(function(item){
+							return item.id === res.id;
+						})[0];
+						item.active = res.active;
 					}, appAlert.error)
 			};
 

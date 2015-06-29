@@ -8,7 +8,7 @@ div(ng-controller='instanceEditCtrl as instanceEdit')
 			input#name.form-control(type='text', ng-model='instanceEdit.item.name', required)
 		.form-group
 			label(for='count') Count:
-			input#count.form-control(type='number', min='0', ng-model='instanceEdit.item.count', required)
+			input#count.form-control(type='number', min='0', ng-model='instanceEdit.item.count')
 		.checkbox
 			label
 				input(type='checkbox', ng-model='instanceEdit.item.active')
