@@ -4,13 +4,35 @@ div(ng-controller='tarifsEditCtrl as tarifsEdit')
 	h2.sub-header(ng-if='!tarifsEdit.isCreate') Edit
 	form(ng-submit='tarifsEdit.submit()')
 		.form-group
-			label(for='name') Name:
-			input#name.form-control(type='text', ng-model='tarifsEdit.item.name', required)
+			label(for='type') Type:
+			select#type.form-control(ng-options='type.name for type in tarifsEdit.types track by type.type', ng-model='tarifsEdit.item.type', ng-change='tarifsEdit.changeType()')
 		.form-group
-			label(for='count') Count:
-			input#count.form-control(type='number', min='0', ng-model='tarifsEdit.item.count')
-		.checkbox
-			label
-				input(type='checkbox', ng-model='tarifsEdit.item.active')
-				| Active
+			label(for='count') Cost:
+			input#count.form-control(type='text', ng-model='tarifsEdit.item.cost')
+		div(ng-if='tarifsEdit.item.type.type === "period"')
+			div(ng-if='tarifsEdit.item.period.length')
+				table.table
+					tr(ng-repeat='period in tarifsEdit.item.period')
+						td(ng-bind='period.start | date:"dd/MM/yyyy"')
+						td(ng-bind='period.stop | date:"dd/MM/yyyy"')
+						td(ng-bind='period.cost')
+			.row
+				.form-group
+					.col-md-3
+						p.input-group
+							input.form-control(type='text', disabled, datepicker-popup='dd-MMMM-yyyy', ng-model='tarifsEdit.period.start', is-open="tarifsEdit.openedStartDate", datepicker-options='tarifsEdit.dateOptions', ng-required='true')
+							span.input-group-btn
+								button.btn.btn-default(type='button', ng-click='tarifsEdit.openStartDate($event)')
+									i.glyphicon.glyphicon-calendar
+					.col-md-3
+						p.input-group
+							input.form-control(type='text', disabled, datepicker-popup='dd-MMMM-yyyy', ng-model='tarifsEdit.period.stop', is-open="tarifsEdit.openedStopDate", datepicker-options='tarifsEdit.dateOptions', ng-required='true')
+							span.input-group-btn
+								button.btn.btn-default(type='button', ng-click='tarifsEdit.openStopDate($event)')
+									i.glyphicon.glyphicon-calendar
+					.col-md-3
+						input.form-control(type='text', ng-model='tarifsEdit.period.cost')
+					.col-md-1
+						button.form-control.btn.btn-success(ng-click='tarifsEdit.addPeriod()') Add
+
 		button.btn.btn-default(type='submit') Submit

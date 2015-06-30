@@ -8,14 +8,18 @@ angular
 		'tarifsFactory',
 		'appAlertFactory',
 		function($state, $stateParams, Tarifs, appAlert){
-			//todo
 			var that = this;
 
-			this.item = {
-				name: '',
-				count: 0,
-				active: false
-			};
+			this.types = [{
+				type: 'static',
+				name: 'Static'
+			}, {
+				type: 'full',
+				name: 'Full'
+			}, {
+				type: 'period',
+				name: 'Period'
+			}];
 
 			this.getItem = function(){
 				Tarifs
@@ -26,19 +30,58 @@ angular
 			};
 
 			this.submit = function(){
-				Tarifs
-					.submit(that.item)
-					.then(function(res){
-						that.item = res;
-						$state.go('tarifsList');
-						appAlert.showSimple({message: 'Tarif successfully saved'})
-					}, appAlert.error);
+				//Tarifs
+				//	.submit(that.item)
+				//	.then(function(res){
+				//		that.item = res;
+				//		$state.go('tarifsList');
+				//		appAlert.showSimple({message: 'Tarif successfully saved'})
+				//	}, appAlert.error);
+			};
+
+			function initDefaultPeriod(){
+				that.period = {
+					start: new Date(),
+					stop: new Date(),
+					cost: 0
+				};
+			}
+
+			this.changeType = function(){
+				that.item.period = [];
+				initDefaultPeriod();
+				that.dateOptions = {
+					formatYear: 'yy',
+					startingDay: 1
+				};
+			};
+
+			this.openStartDate = function($event){
+				$event.preventDefault();
+				$event.stopPropagation();
+
+				this.openedStartDate = true;
+			};
+
+			this.openStopDate = function($event){
+				$event.preventDefault();
+				$event.stopPropagation();
+
+				this.openedStopDate = true;
+			};
+
+			this.addPeriod = function(){
+				that.item.period.push(angular.copy(that.period));
+				initDefaultPeriod();
 			};
 
 			if ($stateParams.id){
 				this.getItem();
 			}else{
-				this.item = {};
+				that.item = {
+					cost: 0,
+					type: that.types[0]
+				};
 				this.isCreate = true;
 			}
 		}

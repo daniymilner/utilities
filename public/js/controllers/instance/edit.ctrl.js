@@ -10,12 +10,6 @@ angular
 		function($state, $stateParams, Instance, appAlert){
 			var that = this;
 
-			this.item = {
-				name: '',
-				count: 0,
-				active: false
-			};
-
 			this.getItem = function(){
 				Instance
 					.get($stateParams.id)
@@ -37,7 +31,11 @@ angular
 			if ($stateParams.id){
 				this.getItem();
 			}else{
-				this.item = {};
+				this.item = {
+					name: '',
+					count: 0,
+					active: false
+				};
 				this.isCreate = true;
 			}
 		}
