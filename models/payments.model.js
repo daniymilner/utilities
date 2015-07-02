@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
 	model = new mongoose.Schema({
-		instance_id: {type: mongoose.Schema.Types.ObjectId},
-		tariff_id: {type: mongoose.Schema.Types.ObjectId},
+		tariff: {type: mongoose.Schema.Types.ObjectId, ref: 'Tariff'},
 		actual_date: {type: Date, default: Date.now},
 		start_count: Number,
 		stop_count: Number,
@@ -23,8 +22,7 @@ model.set('toJSON', {
 	transform: function(doc, ret){
 		return {
 			id: ret._id,
-			instance_id: ret.instance_id,
-			tariff_id: ret.tariff_id,
+			tariff: ret.tariff,
 			actual_date: ret.actual_date,
 			start_count: ret.start_count,
 			stop_count: ret.stop_count,

@@ -1,14 +1,13 @@
-//todo
-var InstanceService = require('../instance/index'),
+var TarifsService = require('../tarifs/index'),
 	Q = require('q');
 
 module.exports = function(id){
 	var deferred = Q.defer();
 
-	InstanceService
+	TarifsService
 		.get(id)
-		.then(function(instance){
-			instance.remove(function(err){
+		.then(function(tariff){
+			tariff.remove(function(err){
 				if (!err){
 					deferred.resolve();
 				}else{

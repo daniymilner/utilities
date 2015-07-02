@@ -3,11 +3,13 @@
 angular
 	.module('utilities')
 	.controller('tarifsEditCtrl', [
+		'$q',
 		'$state',
 		'$stateParams',
 		'tarifsFactory',
 		'appAlertFactory',
-		function($state, $stateParams, Tarifs, appAlert){
+		'instanceFactory',
+		function($q, $state, $stateParams, Tarifs, appAlert, Instance){
 			var that = this;
 
 			this.types = [{
@@ -21,22 +23,40 @@ angular
 				name: 'Period'
 			}];
 
+			function getInstances(){
+				var deferrer = $q.defer();
+				Instance
+					.list()
+					.then(function(list){
+						that.instanceList = list;
+						deferrer.resolve();
+					}, deferrer.reject);
+
+				return deferrer.promise;
+			}
+
 			this.getItem = function(){
 				Tarifs
 					.get($stateParams.id)
 					.then(function(res){
 						that.item = res;
+						that.item.type = that.types.filter(function(type){
+							return type.type === that.item.type;
+						})[0];
+						that.item.instance = that.instanceList.filter(function(instance){
+							return instance.id === that.item.instance;
+						})[0];
+						initDefaultPeriod();
 					}, appAlert.error)
 			};
 
 			this.submit = function(){
-				//Tarifs
-				//	.submit(that.item)
-				//	.then(function(res){
-				//		that.item = res;
-				//		$state.go('tarifsList');
-				//		appAlert.showSimple({message: 'Tarif successfully saved'})
-				//	}, appAlert.error);
+				Tarifs
+					.submit(that.item)
+					.then(function(){
+						$state.go('tarifsList');
+						appAlert.showSimple({message: 'Tarif successfully saved'})
+					}, appAlert.error);
 			};
 
 			function initDefaultPeriod(){
@@ -45,15 +65,15 @@ angular
 					stop: new Date(),
 					cost: 0
 				};
+				that.dateOptions = {
+					formatYear: 'yy',
+					startingDay: 1
+				};
 			}
 
 			this.changeType = function(){
 				that.item.period = [];
 				initDefaultPeriod();
-				that.dateOptions = {
-					formatYear: 'yy',
-					startingDay: 1
-				};
 			};
 
 			this.openStartDate = function($event){
@@ -75,14 +95,23 @@ angular
 				initDefaultPeriod();
 			};
 
-			if ($stateParams.id){
-				this.getItem();
-			}else{
-				that.item = {
-					cost: 0,
-					type: that.types[0]
-				};
-				this.isCreate = true;
-			}
+			this.removePeriod = function(index){
+				that.item.period.splice(index, 1);
+			};
+
+			getInstances()
+				.then(function(){
+					if ($stateParams.id){
+						that.getItem();
+					}else{
+						that.item = {
+							cost: 0,
+							type: that.types[0],
+							instance: that.instanceList[0]
+						};
+						that.isCreate = true;
+					}
+				});
+
 		}
 	]);

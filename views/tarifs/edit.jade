@@ -7,6 +7,10 @@ div(ng-controller='tarifsEditCtrl as tarifsEdit')
 			label(for='type') Type:
 			select#type.form-control(ng-options='type.name for type in tarifsEdit.types track by type.type', ng-model='tarifsEdit.item.type', ng-change='tarifsEdit.changeType()')
 		.form-group
+			label(for='instance') Instance:
+			select#instance.form-control(ng-options='instance.name for instance in tarifsEdit.instanceList track by instance.id', ng-model='tarifsEdit.item.instance')
+				option(value='', ng-if='false')
+		.form-group
 			label(for='count') Cost:
 			input#count.form-control(type='text', ng-model='tarifsEdit.item.cost')
 		div(ng-if='tarifsEdit.item.type.type === "period"')
@@ -16,6 +20,8 @@ div(ng-controller='tarifsEditCtrl as tarifsEdit')
 						td(ng-bind='period.start | date:"dd/MM/yyyy"')
 						td(ng-bind='period.stop | date:"dd/MM/yyyy"')
 						td(ng-bind='period.cost')
+						td
+							i.glyphicon.glyphicon-remove(style='cursor: pointer', ng-click='tarifsEdit.removePeriod($index)')
 			.row
 				.form-group
 					.col-md-3
@@ -33,6 +39,6 @@ div(ng-controller='tarifsEditCtrl as tarifsEdit')
 					.col-md-3
 						input.form-control(type='text', ng-model='tarifsEdit.period.cost')
 					.col-md-1
-						button.form-control.btn.btn-success(ng-click='tarifsEdit.addPeriod()') Add
+						input.form-control.btn.btn-success(type='button', ng-click='tarifsEdit.addPeriod()', value='Add')
 
 		button.btn.btn-default(type='submit') Submit

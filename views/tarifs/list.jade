@@ -8,16 +8,14 @@ div(ng-controller='tarifsListCtrl as tarifsList')
 			thead
 				tr
 					th Type
-					th Period
 					th Cost
 					th Instance
 					th
 			tbody
 				tr(ng-repeat='tariff in tarifsList.list')
 					td(ng-bind='tariff.type')
-					td(ng-bind='tariff.period')
 					td(ng-bind='tariff.cost')
-					td(ng-bind='tariff.instance')
+					td(ng-bind='tariff.instance.name')
 					td
 						.btn-group
 							button.btn.btn-default.btn-sm(ng-click='tarifsList.edit(tariff)') Edit

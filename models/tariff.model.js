@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	model = new mongoose.Schema({
 		type: String, // static, full, period
 		cost: Number,
-		instance_id: {type: mongoose.Schema.Types.ObjectId},
+		instance: {type: mongoose.Schema.Types.ObjectId, ref: 'Instance'},
 		period: [], // {start, stop, cost}
 		created_at: {type: Date, default: Date.now},
 		updated_at: {type: Date, default: Date.now}
@@ -21,7 +21,7 @@ model.set('toJSON', {
 			id: ret._id,
 			type: ret.type,
 			cost: ret.cost,
-			instance_id: ret.instance_id,
+			instance: ret.instance,
 			period: ret.period,
 			created_at: ret.created_at,
 			updated_at: ret.updated_at

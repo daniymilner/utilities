@@ -1,17 +1,16 @@
-//todo
-var Instance = require('mongoose').model('Instance'),
+var Tariff = require('mongoose').model('Tariff'),
 	Q = require('q');
 
-module.exports = function(item, user){
+module.exports = function(item){
 	var deferred = Q.defer(),
-		instance = new Instance();
+		tariff = new Tariff();
 
-	instance.name = item.name;
-	instance.count = item.count;
-	instance.active = item.active;
-	instance.user_id = user.id;
+	tariff.type = item.type.type;
+	tariff.cost = item.cost;
+	tariff.instance = item.instance.id;
+	tariff.period = item.period;
 
-	instance.save(function(err, item){
+	tariff.save(function(err, item){
 		if (!err){
 			deferred.resolve(item);
 		}else{

@@ -1,17 +1,17 @@
-//todo
-var InstanceService = require('../instance/index'),
+var TariffService = require('../tarifs/index'),
 	Q = require('q');
 
 module.exports = function(item){
 	var deferred = Q.defer();
 
-	InstanceService
+	TariffService
 		.get(item.id)
-		.then(function(instance){
-			instance.name = item.name;
-			instance.count = item.count;
-			instance.active = item.active;
-			instance.save(function(err, item){
+		.then(function(tariff){
+			tariff.type = item.type.type;
+			tariff.cost = item.cost;
+			tariff.instance = item.instance.id;
+			tariff.period = item.period;
+			tariff.save(function(err, item){
 				if (!err){
 					deferred.resolve(item);
 				}else{

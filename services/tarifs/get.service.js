@@ -1,10 +1,9 @@
-//todo
-var Instance = require('mongoose').model('Instance'),
+var Tariff = require('mongoose').model('Tariff'),
 	Q = require('q');
 
 module.exports = function(id){
 	var deferred = Q.defer();
-	Instance
+	Tariff
 		.findById(id)
 		.exec(function(err, item){
 			if (!err){

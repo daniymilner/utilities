@@ -5,6 +5,7 @@ module.exports = function(){
 	var deferred = Q.defer();
 	Tarifs
 		.find({})
+		.populate('instance')
 		.exec(function(err, list){
 			if (!err){
 				deferred.resolve(list);

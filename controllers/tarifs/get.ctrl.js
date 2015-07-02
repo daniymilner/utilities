@@ -1,10 +1,9 @@
-//todo
-var Instance = require('../../services').Instance;
+var Tarifs = require('../../services').Tarifs;
 
 module.exports = function(req, res, next){
 	var id = req.params.id;
 
-	Instance
+	Tarifs
 		.get(id)
 		.then(function(item){
 			res.json(item);
