@@ -10,6 +10,7 @@ div(ng-controller='tarifsListCtrl as tarifsList')
 					th Type
 					th Cost
 					th Instance
+					th.text-center Active
 					th
 			tbody
 				tr(ng-repeat='tariff in tarifsList.list')
@@ -17,7 +18,14 @@ div(ng-controller='tarifsListCtrl as tarifsList')
 					td(ng-bind='tariff.cost')
 					td(ng-bind='tariff.instance.name')
 					td
+						p.text-center(ng-if='tariff.active')
+							span.glyphicon.glyphicon-ok(aria-hidden='true')
+						p.text-center(ng-if='!tariff.active')
+							span.glyphicon.glyphicon-remove(aria-hidden='true')
+					td
 						.btn-group
 							button.btn.btn-default.btn-sm(ng-click='tarifsList.edit(tariff)') Edit
+							button.btn.btn-success.btn-sm(ng-if='tariff.active', ng-click='tarifsList.toggle(tariff)') Disable
+							button.btn.btn-primary.btn-sm(ng-if='!tariff.active', ng-click='tarifsList.toggle(tariff)') Enable
 							button.btn.btn-danger.btn-sm(ng-click='tarifsList.remove(tariff)') Remove
 		p(ng-if='!tarifsList.list.length') No item in list

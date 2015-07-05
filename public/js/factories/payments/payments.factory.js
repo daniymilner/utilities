@@ -2,31 +2,31 @@
 
 angular
 	.module('utilities')
-	.factory('tarifsFactory', [
+	.factory('paymentsFactory', [
 		'appUtilsFactory',
 		function(appUtils){
 			this.list = function(){
 				return appUtils.request({
 					method: 'get',
-					url: '/tarifs/list'
+					url: '/instance/list'
 				});
 			};
 			this.toggle = function(id){
 				return appUtils.request({
 					method: 'post',
-					url: '/tarifs/' + id + '/toggle'
+					url: '/instance/' + id + '/toggle'
 				});
 			};
 			this.get = function(id){
 				return appUtils.request({
 					method: 'get',
-					url: '/tarifs/' + id
+					url: '/instance/' + id
 				});
 			};
 			this.submit = function(item){
 				return appUtils.request({
 					method: 'put',
-					url: '/tarifs',
+					url: '/instance',
 					data: {
 						item: item
 					}
@@ -35,7 +35,7 @@ angular
 			this.remove = function(id){
 				return appUtils.request({
 					method: 'delete',
-					url: '/tarifs/' + id
+					url: '/instance/' + id
 				});
 			};
 

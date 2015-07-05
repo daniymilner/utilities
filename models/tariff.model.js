@@ -5,7 +5,8 @@ var mongoose = require('mongoose'),
 		instance: {type: mongoose.Schema.Types.ObjectId, ref: 'Instance'},
 		period: [], // {start, stop, cost}
 		created_at: {type: Date, default: Date.now},
-		updated_at: {type: Date, default: Date.now}
+		updated_at: {type: Date, default: Date.now},
+		active: Boolean
 	});
 
 model.pre('save', function(next){
@@ -24,7 +25,8 @@ model.set('toJSON', {
 			instance: ret.instance,
 			period: ret.period,
 			created_at: ret.created_at,
-			updated_at: ret.updated_at
+			updated_at: ret.updated_at,
+			active: ret.active
 		};
 	}
 });

@@ -90,6 +90,18 @@ angular
 							templateUrl: "views/common/submenu"
 						}
 					}
+				})
+				.state('paymentsEdit', {
+					url: '/payments/:id',
+					resolve: {user: userResolver},
+					views: {
+						main: {
+							templateUrl: "views/payments/edit"
+						},
+						submenu:{
+							templateUrl: "views/common/submenu"
+						}
+					}
 				});
 			$urlRouterProvider.otherwise('/');
 		}

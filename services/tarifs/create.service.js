@@ -9,6 +9,7 @@ module.exports = function(item){
 	tariff.cost = item.cost;
 	tariff.instance = item.instance.id;
 	tariff.period = item.period;
+	tariff.active = item.active;
 
 	tariff.save(function(err, item){
 		if (!err){

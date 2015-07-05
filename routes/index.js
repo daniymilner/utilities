@@ -29,6 +29,7 @@ router
 
 	.get('/tarifs/list', userFilter, controllers.tarifs.list)
 	.get('/tarifs/:id', userFilter, controllers.tarifs.get)
+	.post('/tarifs/:id/toggle', userFilter, controllers.tarifs.toggle)
 	.put('/tarifs', userFilter, controllers.tarifs.submit)
 	.delete('/tarifs/:id', userFilter, controllers.tarifs.remove);
 

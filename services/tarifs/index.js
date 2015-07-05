@@ -3,3 +3,4 @@ exports.get = require('./get.service');
 exports.create = require('./create.service');
 exports.update = require('./update.service');
 exports.remove = require('./remove.service');
+exports.toggle = require('./toggle.service');

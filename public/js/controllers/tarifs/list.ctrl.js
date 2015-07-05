@@ -33,5 +33,13 @@ angular
 			this.create = function(){
 				$state.go('tarifsEdit');
 			};
+
+			this.toggle = function(tarif){
+				Tarifs
+					.toggle(tarif.id)
+					.then(function(res){
+						that.list = res;
+					}, appAlert.error)
+			};
 		}
 	]);

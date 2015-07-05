@@ -1,0 +1,32 @@
+div(ng-controller='paymentsEditCtrl as paymentsEdit')
+	h1.page-header Payments
+	h2.sub-header(ng-if='paymentsEdit.isCreate') Create
+	h2.sub-header(ng-if='!paymentsEdit.isCreate') Edit
+	form(ng-submit='paymentsEdit.submit()')
+		.form-group
+			label(for='instance') Instances:
+			select#instance.form-control(ng-options='instance.name for instance in paymentsEdit.instanceList track by instance.id', ng-model='paymentsEdit.instance', ng-change='paymentsEdit.changeInstance()')
+		.form-group(ng-if='paymentsEdit.tariff')
+			label Tarif:
+			p Type: {{paymentsEdit.tariff.type}}
+			p Cost: {{paymentsEdit.tariff.cost}}
+			div(ng-if='paymentsEdit.tariff.type === "period"')
+				div(ng-if='paymentsEdit.tariff.period.length')
+				table.table
+					tr(ng-repeat='period in paymentsEdit.tariff.period')
+						td(ng-bind='period.start | date:"dd/MM/yyyy"')
+						td(ng-bind='period.stop | date:"dd/MM/yyyy"')
+						td(ng-bind='period.cost')
+		.form-group(ng-if='!paymentsEdit.tariff')
+			| No tariff
+		//.form-group
+		//	label(for='name') Name:
+		//	input#name.form-control(type='text', ng-model='instanceEdit.item.name', required)
+		//.form-group
+		//	label(for='count') Count:
+		//	input#count.form-control(type='number', min='0', ng-model='instanceEdit.item.count')
+		//.checkbox
+		//	label
+		//		input(type='checkbox', ng-model='instanceEdit.item.active')
+		//		| Active
+		//button.btn.btn-default(type='submit') Submit
